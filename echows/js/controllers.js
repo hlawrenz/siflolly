@@ -6,7 +6,8 @@ angular.module('siflOlly.controllers', [])
   .controller('EchoCtrl', ['$scope', function($scope) {
       $scope.messages = [];
       $scope.echo = '';
-      $scope._socket = new WebSocket("ws://localhost:8888/echosock");
+      var sockHost = location.hostname+(location.port ? ':'+location.port: '')
+      $scope._socket = new WebSocket("ws://"+sockHost+"/echosock");
       $scope.status = 'Not Connected';
 
       $scope._socket.onopen = function (event) {
@@ -26,7 +27,8 @@ angular.module('siflOlly.controllers', [])
   .controller('NoiseCtrl', ['$scope', function($scope) {
       $scope.messages = [];
       $scope.echo = '';
-      $scope._socket = new WebSocket("ws://localhost:8888/noise");
+      var sockHost = location.hostname+(location.port ? ':'+location.port: '')
+      $scope._socket = new WebSocket("ws://"+sockHost+"/noise");
       $scope.status = 'Not Connected';
 
       $scope._socket.onopen = function (event) {
