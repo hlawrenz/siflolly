@@ -1,0 +1,9 @@
+<h1>TYPE IN THE THING!</h1>
+<h3>{{status}}</h3>
+<form ng-submit="sendMessage()">
+  <input type="text" ng-model="echo"></input>
+  <input type="submit" ></input>
+</form>
+<ul>
+<li ng-repeat="msg in messages track by $index">{{msg}}</li>
+</ul>
