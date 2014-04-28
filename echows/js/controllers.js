@@ -38,12 +38,12 @@ angular.module('siflOlly.controllers', [])
 
       $scope._socket.onmessage = function (event) {
           $scope.messages.unshift(event.data);
-          $scope.echo = '';
 		  $scope.$apply();
       };
 
       $scope.sendMessage = function () {
           $scope._socket.send($scope.echo);
+          $scope.echo = '';
       };
 
   }]);
