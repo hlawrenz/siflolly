@@ -5,6 +5,7 @@ import (
 	//	"io/ioutil"
 	"fmt"
 	"github.com/gorilla/websocket"
+	"github.com/hlawrenz/siflolly/cacophony"
 	"github.com/hlawrenz/siflolly/noise"
 	"log"
 	"net/http"
@@ -55,9 +56,16 @@ func main() {
 	http.Handle("/echows/", http.StripPrefix("/echows/", http.FileServer(http.Dir(echowsDir))))
 	//http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets"))))
 	fmt.Println(assetDir)
+
+	http.HandleFunc("/echosock", echoHandler)
+
 	sb := noise.NewSwitchboard()
 	n := noise.Noise{Sb: &sb}
-	http.HandleFunc("/echosock", echoHandler)
 	http.HandleFunc("/noise", n.ServeWs)
+
+	csb := cacophony.NewSwitchboard()
+	c := cacophony.Cacophony{Sb: &csb}
+	http.HandleFunc("/cacophony", c.ServeWs)
+
 	http.ListenAndServe(":8888", nil)
 }

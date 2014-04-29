@@ -1,0 +1,24 @@
+<h1>TYPE IN THE THING!</h1>
+<h3>{{status}}</h3>
+<div class="row">
+  <div class="col-md-10">
+    <form ng-submit="sendMessage()">
+      <input type="text" ng-model="echo"></input>
+      <input type="submit" ></input>
+    </form>
+    <dl class="dl-horizontal">
+      <dt ng-repeat-start="msg in messages track by $index">{{msg.from}}</dt>
+      <dd ng-repeat-end>{{msg.msg}}</dd>
+    </dl>
+  </div>
+  <div class="col-md-2">
+    <form ng-submit="setNick()">
+      <input type="text" ng-model="nick"></input>
+      <input type="submit" ></input>
+    </form>
+    <div class="bg-danger" ng-show="error">
+    {{error}}
+    </div>
+  </div>
+</div>
+
